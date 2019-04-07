@@ -20,22 +20,22 @@ export default {
       return req.data
     })
   },
-  getPosts() {
-    return this.execute('get', '/posts')
+  getTeams() {
+    return this.execute('get', '/teams')
   },
-  getPost(id) {
-    return this.execute('get', `/posts/${id}`)
-  },
-
-  createPost(data){
-    return this.execute('post', '/posts', data)
+  getTeam(id) {
+    return this.execute('get', `/teams/${id}`)
   },
 
-  updatePost(id, data){
-    return this.execute('put', `/posts/${id}`, data)
-  },
+  // createPost(data){
+  //   return this.execute('post', '/posts', data)
+  // },
 
-  deletePost(id) {
-    return this.execute('delete', `/posts/${id}`)
-  }
+  // updatePost(id, data){
+  //   return this.execute('put', `/posts/${id}`, data)
+  // },
+
+  // deletePost(id) {
+  //   return this.execute('delete', `/posts/${id}`)
+  // }
 }

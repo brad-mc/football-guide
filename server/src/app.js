@@ -14,7 +14,6 @@ let app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-// verify JWT token middleware
 app.use((req, res, next) => {
   // require every request to have an authorization header
   if (!req.headers.authorization) {
@@ -34,16 +33,17 @@ app.use((req, res, next) => {
 })
 
 // For ease of this tutorial, we are going to use SQLite to limit dependencies
-let database = new Sequelize({
-  dialect: 'sqlite',
-  storage: './test.sqlite'
+const database = new Sequelize('pukka', 'postgres', 'IAs2vj3b#R9O!gL9', {
+  host: '130.211.198.244',
+  dialect: 'postgres'
 })
 
 // Define our Post model
 // id, createdAt, and updatedAt are added by sequelize automatically
-let Post = database.define('posts', {
-  title: Sequelize.STRING,
-  body: Sequelize.TEXT
+let Post = database.define('teams', {
+  name: Sequelize.STRING,
+  division: Sequelize.INTEGER,
+  logo: Sequelize.BLOB
 })
 
 // Initialize epilogue
@@ -55,7 +55,7 @@ epilogue.initialize({
 // Create the dynamic REST resource for our Post model
 let userResource = epilogue.resource({
   model: Post,
-  endpoints: ['/posts', '/posts/:id']
+  endpoints: ['/teams', '/teams/:id']
 })
 
 // Resets the database and launches the express app on :8081
